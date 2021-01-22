@@ -50,13 +50,6 @@ class Movie(db.Model):
             'release_date': self.release_date,
         }
 
-
-actors_movies = db.Table(
-    'ActorsMovies',
-    db.Column('actor_id', db.Integer, db.ForeignKey('Actor.id'),primary_key=True),
-    db.Column('movie_id', db.Integer, db.ForeignKey('Movie.id'),primary_key=True),
-)
-
 # Actors with attributes name, age and gender
 class Actor(db.Model):
     __tablename__ = 'actors'
@@ -65,7 +58,7 @@ class Actor(db.Model):
     name = Column(String)
     age = Column(Integer)
     gender = Column(String)
-    movies = db.relationship('Movie', secondary=actors_movies,
+    movies = db.relationship('Movie', secondary='ActorsMovies',
                              backref=db.backref('actors', lazy='dynamic'))
 
     def __init__(self, name, age, gender):
@@ -91,3 +84,9 @@ class Actor(db.Model):
             'age': self.age,
             'gender': self.gender,
         }
+
+    actors_movies = db.Table(
+        'ActorsMovies',
+        db.Column('actor_id', db.Integer, db.ForeignKey('Actor.id'), primary_key=True),
+        db.Column('movie_id', db.Integer, db.ForeignKey('Movie.id'), primary_key=True),
+    )
