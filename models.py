@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 
 
-DATABASE_URI = os.getenv('DATABASE_URI')
+DATABASE_URI = 'postgres://aryggjifcqwmur:7cadc855538c0840ca9e79202056e899d3f1f0861543127a57dfd81807a1f64b@ec2-52-44-46-66.compute-1.amazonaws.com:5432/dep76g3od832hk'
 
 db = SQLAlchemy()
 
