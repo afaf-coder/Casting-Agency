@@ -32,8 +32,7 @@ class Movie(db.Model):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     release_date = Column(Date)
-    actors = db.relationship('Actor', secondary='ActorsMovies',
-                             backref=db.backref('movies', lazy='dynamic'))
+    actors = db.relationship('Actor', secondary=actors_movies, backref='Movie')
 
     def __init__(self, title, release_date):
         self.title = title
@@ -66,8 +65,7 @@ class Actor(db.Model):
     name = Column(String)
     age = Column(Integer)
     gender = Column(String)
-    movies = db.relationship('Movie', secondary='ActorsMovies',
-                             backref=db.backref('actors', lazy='dynamic'))
+    actors = db.relationship('Movie', secondary=actors_movies, backref='Actor')
 
     def __init__(self, name, age, gender):
         self.name = name
