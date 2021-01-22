@@ -27,7 +27,7 @@ actors_movies = db.Table(
 # Movies with attributes title and release date
 
 class Movie(db.Model):
-    __tablename__ = 'movies'
+    __tablename__ = 'Movie'
 
     id = Column(Integer, primary_key=True)
     title = Column(String)
