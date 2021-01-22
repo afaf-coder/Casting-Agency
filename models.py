@@ -59,7 +59,7 @@ class Movie(db.Model):
 
 # Actors with attributes name, age and gender
 class Actor(db.Model):
-    __tablename__ = 'actors'
+    __tablename__ = 'Actor'
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
