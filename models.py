@@ -16,6 +16,14 @@ def setup_db(app, database_path=DATABASE_URI):
     db.create_all()
 
 
+actors_movies = db.Table(
+    'ActorsMovies',
+    db.Column('id', db.Integer, primary_key=True),
+    db.Column('actor_id', db.Integer, db.ForeignKey('Actor.id')),
+    db.Column('movie_id', db.Integer, db.ForeignKey('Movie.id')),
+)
+
+
 # Movies with attributes title and release date
 
 class Movie(db.Model):
@@ -24,6 +32,8 @@ class Movie(db.Model):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     release_date = Column(Date)
+    actors = db.relationship('Actor', secondary='ActorsMovies',
+                             backref=db.backref('movies', lazy='dynamic'))
 
     def __init__(self, title, release_date):
         self.title = title
@@ -82,10 +92,3 @@ class Actor(db.Model):
             'age': self.age,
             'gender': self.gender,
         }
-
-
-actors_movies = db.Table(
-    'ActorsMovies',
-    db.Column('actor_id', db.Integer, db.ForeignKey('Actor.id'), primary_key=True),
-    # db.Column('movie_id', db.Integer, db.ForeignKey('Movie.id'), primary_key=True),
-)
