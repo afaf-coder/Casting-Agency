@@ -17,12 +17,6 @@ def setup_db(app, database_path=DATABASE_URI):
     db.create_all()
 
 
-actors_movies = db.Table(
-    'ActorsMovies',
-    db.Column('actor_id', db.Integer, db.ForeignKey('Actor.id'),primary_key=True),
-    db.Column('movie_id', db.Integer, db.ForeignKey('Movie.id'),primary_key=True),
-)
-
 
 # Movies with attributes title and release date
 
@@ -56,6 +50,12 @@ class Movie(db.Model):
             'release_date': self.release_date,
         }
 
+
+actors_movies = db.Table(
+    'ActorsMovies',
+    db.Column('actor_id', db.Integer, db.ForeignKey('Actor.id'),primary_key=True),
+    db.Column('movie_id', db.Integer, db.ForeignKey('Movie.id'),primary_key=True),
+)
 
 # Actors with attributes name, age and gender
 class Actor(db.Model):
