@@ -87,5 +87,5 @@ class Actor(db.Model):
 actors_movies = db.Table(
     'ActorsMovies',
     db.Column('actor_id', db.Integer, db.ForeignKey('Actor.id'), primary_key=True),
-    db.Column('movie_id', db.Integer, db.ForeignKey('Movie.id'), primary_key=True),
+    # db.Column('movie_id', db.Integer, db.ForeignKey('Movie.id'), primary_key=True),
 )
