@@ -10,7 +10,7 @@ def create_app(test_config=None):
     app = Flask(__name__)
     app.debug = True
     CORS(app)
-    setup_db("my_schema")
+    setup_db(app)
 
     @app.after_request
     def after_request(response):
